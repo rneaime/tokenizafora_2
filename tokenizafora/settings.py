@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'secret_key'
+SECRET_KEY = 'chave_secreta_aleatoria'
 DEBUG = True
 ALLOWED_HOSTS = []
 INSTALLED_APPS = [
@@ -41,8 +41,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'tokenizafora.tokenizafora.wsgi.application'
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'tokenizafora',
+        'USER': 'tokenizafora',
+        'PASSWORD': 'tokenizafora',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 AUTH_PASSWORD_VALIDATORS = [
