@@ -3,7 +3,7 @@ from .models import Veiculo
 from .forms import VeiculoForm
 import jwt
 import datetime
-
+from django.core.exceptions import ObjectDoesNotExist
 
 def index(request):
     veiculos = Veiculo.objects.all()
@@ -20,10 +20,13 @@ def criar_veiculo(request):
     return render(request, 'criar_veiculo.html', {'form': form})
 
 def tokenizar_veiculo(request, pk=None):
+    try:
+        veiculo = Veiculo.objects.get(id=pk)
+    except ObjectDoesNotExist:
+        return render(request, 'tokenizar_veiculo.html', {'erro': 'Veículo não encontrado'})
     if request.method == 'POST':
         veiculo_id = request.POST.get('veiculo_id')
         valor = request.POST.get('valor')
-        veiculo = Veiculo.objects.get(id=veiculo_id)
         # Gere o token JWT
         payload = {
             'veiculo_id': veiculo.id,
@@ -33,11 +36,7 @@ def tokenizar_veiculo(request, pk=None):
             'valor': valor,
             'exp': int(datetime.datetime.now().timestamp()) + 3600
         }
-        token = jwt.encode(payload, 'minha_chave_secreta', algorithm='HS256')
+        token = jwt.encode(payload, 'chave_secreta_aleatoria', algorithm='HS256')
         return render(request, 'tokenizar_veiculo.html', {'token': token, 'veiculo': veiculo})
     else:
-        if pk:
-            veiculo = Veiculo.objects.get(id=pk)
-            return render(request, 'tokenizar_veiculo.html', {'veiculo': veiculo})
-        else:
-            return render(request, 'tokenizar_veiculo.html')
+        return render(request, 'tokenizar_veiculo.html', {'veiculo': veiculo})
