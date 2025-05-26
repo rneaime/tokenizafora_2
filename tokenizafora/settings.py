@@ -38,7 +38,7 @@ TEMPLATES = [
         },
     },
 ]
-WSGI_APPLICATION = 'tokenizafora.wsgi.application'
+WSGI_APPLICATION = 'tokenizafora.tokenizafora.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
