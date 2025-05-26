@@ -2,4 +2,9 @@
 
 {% block content %}
     <h1>Bem-vindo à Tokenizafora!</h1>
+    <ul>
+        {% for veiculo in veiculos %}
+            <li>{{ veiculo.renavam }} - {{ veiculo.placa }} - {{ veiculo.proprietario }} - {{ veiculo.valor }}</li>
+        {% endfor %}
+    </ul>
 {% endblock %}
