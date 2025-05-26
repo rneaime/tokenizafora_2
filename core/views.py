@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Veiculo
 from .forms import VeiculoForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 import jwt
 import datetime
 from django.core.exceptions import ObjectDoesNotExist
