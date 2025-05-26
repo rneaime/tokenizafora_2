@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Tokenizar Veículo</h1>
+    <form method='post'>
+        {% csrf_token %}
+        <input type='search' name='veiculo_id' placeholder='Buscar veículo...'>
+        <button type='submit'>Buscar</button>
+    </form>
+    {% if veiculo %}
+        <h2>Dados do Veículo</h2>
+        <p>RENAVAN: {{ veiculo.renavam }}</p>
+        <p>PLACA: {{ veiculo.placa }}</p>
+        <p>PROPRIETÁRIO: {{ veiculo.proprietario }}</p>
+        <p>VALOR: <input type='number' name='valor' value='{{ veiculo.valor }}'></p>
+        <button type='submit'>Tokenizar</button>
+    {% endif %}
+    {% if token %}
+        <h2>Token</h2>
+        <p><img src='https://cdn-icons-png.flaticon.com/512/25/25694.png' alt='Token'> {{ token }}</p>
+        <button type='button' onclick='copiarToken()'>Copiar Token</button>
+        <button type='button' onclick='salvarToken()'>Salvar Token</button>
+    {% endif %}
+{% endblock %}
