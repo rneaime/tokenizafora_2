@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Perfil</h1>
+    <p>Usuário: {{ user.username }}</p>
+    <p>Nome: {{ user.first_name }}</p>
+    <p>Sobrenome: {{ user.last_name }}</p>
+    <p>E-mail: {{ user.email }}</p>
+    <button type='button' onclick='editarPerfil()'>Editar perfil</button>
+{% endblock %}
