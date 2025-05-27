@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Veiculo
+from .models import Veiculo, Notificacao
 from .forms import VeiculoForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -71,6 +71,6 @@ def editar_perfil(request):
         form = EditarPerfilForm(instance=request.user)
     return render(request, 'editar_perfil.html', {'form': form})
 
-def terminar_sessao(request):
-    request.session.flush()
-    return redirect('index')
+def notificacoes(request):
+    notificacoes = Notificacao.objects.all()
+    return render(request, 'notificacoes.html', {'notificacoes': notificacoes})
