@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Cadastrar Veículo - Tokenizafora{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Cadastrar Novo Veículo</h2>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.marca.id_for_label }}" class="form-label">Marca</label>
+                            {% render_field form.marca class="form-control" %}
+                            {{ form.marca.errors }}
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.modelo.id_for_label }}" class="form-label">Modelo</label>
+                            {% render_field form.modelo class="form-control" %}
+                            {{ form.modelo.errors }}
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.ano.id_for_label }}" class="form-label">Ano</label>
+                            {% render_field form.ano class="form-control" %}
+                            {{ form.ano.errors }}
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.placa.id_for_label }}" class="form-label">Placa</label>
+                            {% render_field form.placa class="form-control" %}
+                            {{ form.placa.errors }}
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.cor.id_for_label }}" class="form-label">Cor</label>
+                            {% render_field form.cor class="form-control" %}
+                            {{ form.cor.errors }}
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.proprietario.id_for_label }}" class="form-label">Proprietário</label>
+                            {% render_field form.proprietario class="form-control" %}
+                            {{ form.proprietario.errors }}
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.valor_mercado.id_for_label }}" class="form-label">Valor de Mercado (R$)</label>
+                            {% render_field form.valor_mercado class="form-control" %}
+                            {{ form.valor_mercado.errors }}
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.renavam.id_for_label }}" class="form-label">RENAVAM</label>
+                            {% render_field form.renavam class="form-control" %}
+                            {{ form.renavam.errors }}
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{% url 'index' %}" class="btn btn-secondary me-md-2">Cancelar</a>
+                        <button type="submit" class="btn btn-primary">Cadastrar Veículo</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

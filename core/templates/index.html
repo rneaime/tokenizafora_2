@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Veículos - Tokenizafora{% endblock %}
+
+{% block content %}
+<div class="mb-4 d-flex justify-content-between align-items-center">
+    <h2>Veículos Disponíveis</h2>
+    <a href="{% url 'criar_veiculo' %}" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Cadastrar Novo Veículo
+    </a>
+</div>
+
+{% if veiculos %}
+    <div class="row">
+        {% for veiculo in veiculos %}
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ veiculo.marca }} {{ veiculo.modelo }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ veiculo.ano }}</h6>
+                        <p class="card-text">
+                            <strong>Placa:</strong> {{ veiculo.placa }}<br>
+                            <strong>Cor:</strong> {{ veiculo.cor }}<br>
+                            <strong>Proprietário:</strong> {{ veiculo.proprietario }}
+                        </p>
+                        <p class="card-text">
+                            <strong>Valor de Mercado:</strong> R$ {{ veiculo.valor_mercado }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-info">
+        Nenhum veículo cadastrado. <a href="{% url 'criar_veiculo' %}">Cadastre o primeiro veículo</a>.
+    </div>
+{% endif %}
+{% endblock %}
+
