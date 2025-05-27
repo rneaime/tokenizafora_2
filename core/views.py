@@ -6,6 +6,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.models import Permission
+from django.core.exceptions import ObjectDoesNotExist
+import datetime
+import jwt
 
 def index(request):
     veiculos = Veiculo.objects.all()
@@ -53,6 +56,9 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 return redirect('index')
+            else:
+                # Add error message for failed authentication
+                return render(request, 'login.html', {'form': form, 'error': 'Nome de usuário ou senha inválidos'})
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form})

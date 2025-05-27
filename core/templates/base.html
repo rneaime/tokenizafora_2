@@ -1,19 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <title>Tokenizafora</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Tokenizafora{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .card {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .btn-primary {
+            background-color: #4a90e2;
+            border-color: #4a90e2;
+        }
+        .btn-primary:hover {
+            background-color: #3a7bc8;
+            border-color: #3a7bc8;
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href='{% url 'index' %}'>Home</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
+    <div class="container">
+        <div class="header d-flex justify-content-between align-items-center">
+            <h1>Tokenizafora</h1>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">Veículos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'criar_veiculo' %}">Cadastrar Veículo</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer class="mt-5 text-center text-muted">
+            <p>&copy; 2025 Tokenizafora. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    {% block extra_js %}{% endblock %}
 </body>
 </html>

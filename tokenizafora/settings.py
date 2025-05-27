@@ -11,6 +11,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',  # Add this line
     'core',
 ]
 MIDDLEWARE = [
@@ -26,7 +27,7 @@ ROOT_URLCONF = 'tokenizafora.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'core' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -38,13 +39,13 @@ TEMPLATES = [
         },
     },
 ]
-WSGI_APPLICATION = 'tokenizafora.tokenizafora.wsgi.application'
+WSGI_APPLICATION = 'tokenizafora.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'tokenizafora',
-        'USER': 'tokenizafora',
-        'PASSWORD': 'tokenizafora',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -72,3 +73,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'static'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+# Default primary key field type
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Custom user model
+AUTH_USER_MODEL = 'core.Usuario'
