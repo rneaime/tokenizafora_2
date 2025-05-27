@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Recuperar Senha</h1>
+    <form method='post'>
+        {% csrf_token %}
+        <label>Usuário:</label>
+        <input type='text' name='username'>
+        <label>E-mail:</label>
+        <input type='email' name='email'>
+        <button type='submit'>Recuperar Senha</button>
+    </form>
+{% endblock %}
