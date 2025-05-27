@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Menu</h1>
+    <ul>
+        <li><a href='{% url 'index' %}'>Home</a></li>
+        <li><a href='{% url 'criar_veiculo' %}'>Cadastrar Ve√≠culo</a></li>
+        <li><a href='{% url 'tokenizar_veiculo' %}'>Tokenizar Ve√≠culo</a></li>
+        <li><a href='{% url 'notificacoes' %}'>Notifica√ß√Ķes</a></li>
+        <li><a href='{% url 'permissoes' %}'>Permiss√Ķes</a></li>
+        <li><a href='{% url 'grupos' %}'>Grupos</a></li>
+        <li><a href='{% url 'login' %}'>Login</a></li>
+        <li><a href='{% url 'registro' %}'>Registro</a></li>
+        <li><a href='{% url 'logout' %}'>Logout</a></li>
+    </ul>
+{% endblock %}
