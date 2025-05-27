@@ -37,6 +37,7 @@ class Usuario(AbstractUser):
     username = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     grupos = models.ManyToManyField(Grupo)
+    permissao = models.ForeignKey(Permissao, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.username
