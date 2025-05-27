@@ -3,7 +3,7 @@ from .models import Veiculo
 from .views import tokenizar_veiculo
 
 class VeiculoAdmin(admin.ModelAdmin):
-    list_display = ('renavam', 'placa', 'proprietario', 'valor')
+    list_display = ('renavam', 'placa', 'proprietario', 'valor_mercado')
     actions = ['gerar_token']
 
     def gerar_token(self, request, queryset):
