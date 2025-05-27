@@ -7,6 +7,8 @@ import jwt
 import datetime
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import logout
+from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.views import PasswordResetView
 
 def index(request):
     veiculos = Veiculo.objects.all()
@@ -47,3 +49,23 @@ def tokenizar_veiculo(request, pk=None):
 def logout_view(request):
     logout(request)
     return redirect('index')
+
+def recuperar_senha(request):
+    if request.method == 'POST':
+        form = PasswordResetForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = PasswordResetForm()
+    return render(request, 'recuperar_senha.html', {'form': form})
+
+def editar_perfil(request):
+    if request.method == 'POST':
+        form = EditarPerfilForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = EditarPerfilForm(instance=request.user)
+    return render(request, 'editar_perfil.html', {'form': form})
