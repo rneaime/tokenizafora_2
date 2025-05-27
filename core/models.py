@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 class Veiculo(models.Model):
     renavam = models.CharField(max_length=20)
@@ -32,7 +33,7 @@ class Grupo(models.Model):
     def __str__(self):
         return self.nome
 
-class Usuario(models.Model):
+class Usuario(AbstractUser):
     username = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     grupos = models.ManyToManyField(Grupo)
