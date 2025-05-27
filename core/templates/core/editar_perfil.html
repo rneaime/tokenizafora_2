@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Editar Perfil</h1>
+    <form method='post'>
+        {% csrf_token %}
+        <label>Nome:</label>
+        <input type='text' name='first_name'>
+        <label>Sobrenome:</label>
+        <input type='text' name='last_name'>
+        <label>E-mail:</label>
+        <input type='email' name='email'>
+        <button type='submit'>Editar Perfil</button>
+    </form>
+{% endblock %}
