@@ -23,3 +23,11 @@ class Permissao(models.Model):
 
     def __str__(self):
         return self.nome
+
+class Grupo(models.Model):
+    nome = models.CharField(max_length=100)
+    descricao = models.TextField()
+    permissoes = models.ManyToManyField(Permissao)
+
+    def __str__(self):
+        return self.nome
