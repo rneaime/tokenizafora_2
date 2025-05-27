@@ -86,3 +86,11 @@ def grupos(request):
 def usuarios(request):
     usuarios = Usuario.objects.all()
     return render(request, 'usuarios.html', {'usuarios': usuarios})
+
+def busca(request):
+    if request.method == 'POST':
+        busca = request.POST.get('busca')
+        veiculos = Veiculo.objects.filter(renavam__contains=busca)
+        return render(request, 'index.html', {'veiculos': veiculos})
+    else:
+        return render(request, 'index.html', {'veiculos': Veiculo.objects.all()})
