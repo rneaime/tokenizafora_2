@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Busca</h1>
+    <form method='post'>
+        {% csrf_token %}
+        <input type='search' name='busca' placeholder='Buscar...'>
+        <button type='submit'>Buscar</button>
+    </form>
+    <ul>
+        {% for veiculo in veiculos %}
+            <li>{{ veiculo.renavam }} - {{ veiculo.placa }} - {{ veiculo.proprietario }} - {{ veiculo.valor }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
