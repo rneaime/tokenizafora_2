@@ -8,3 +8,11 @@ class Veiculo(models.Model):
 
     def __str__(self):
         return self.renavam
+
+class Notificacao(models.Model):
+    veiculo = models.ForeignKey(Veiculo, on_delete=models.CASCADE)
+    mensagem = models.TextField()
+    data = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.mensagem
