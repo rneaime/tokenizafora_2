@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 import jwt
 import datetime
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth import logout
 
 def index(request):
     veiculos = Veiculo.objects.all()
@@ -42,3 +43,7 @@ def tokenizar_veiculo(request, pk=None):
         return render(request, 'tokenizar_veiculo.html', {'token': token, 'veiculo': veiculo})
     else:
         return render(request, 'tokenizar_veiculo.html', {'veiculo': veiculo})
+
+def logout_view(request):
+    logout(request)
+    return redirect('index')
