@@ -9,6 +9,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import logout
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.views import PasswordResetView
+from django.contrib.auth.models import Permission
 
 def index(request):
     veiculos = Veiculo.objects.all()
@@ -69,3 +70,7 @@ def editar_perfil(request):
     else:
         form = EditarPerfilForm(instance=request.user)
     return render(request, 'editar_perfil.html', {'form': form})
+
+def terminar_sessao(request):
+    request.session.flush()
+    return redirect('index')
