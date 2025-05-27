@@ -70,3 +70,19 @@ def registro_view(request):
     else:
         form = RegistroForm()
     return render(request, 'registro.html', {'form': form})
+
+def notificacoes(request):
+    notificacoes = Notificacao.objects.all()
+    return render(request, 'notificacoes.html', {'notificacoes': notificacoes})
+
+def permissoes(request):
+    permissoes = Permissao.objects.all()
+    return render(request, 'permissoes.html', {'permissoes': permissoes})
+
+def grupos(request):
+    grupos = Grupo.objects.all()
+    return render(request, 'grupos.html', {'grupos': grupos})
+
+def usuarios(request):
+    usuarios = Usuario.objects.all()
+    return render(request, 'usuarios.html', {'usuarios': usuarios})
