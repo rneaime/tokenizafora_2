@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Veiculo, Notificacao
+from .models import Veiculo, Notificacao, Permissao
 from .forms import VeiculoForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -74,3 +74,7 @@ def editar_perfil(request):
 def notificacoes(request):
     notificacoes = Notificacao.objects.all()
     return render(request, 'notificacoes.html', {'notificacoes': notificacoes})
+
+def permissoes(request):
+    permissoes = Permissao.objects.all()
+    return render(request, 'permissoes.html', {'permissoes': permissoes})
