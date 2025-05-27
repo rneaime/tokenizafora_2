@@ -6,9 +6,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.models import Permission
-from django.core.exceptions import ObjectDoesNotExist
-import datetime
 import jwt
+from datetime import datetime, timedelta
 
 def index(request):
     veiculos = Veiculo.objects.all()
@@ -28,18 +27,17 @@ def tokenizar_veiculo(request, pk=None):
     try:
         veiculo = Veiculo.objects.get(id=pk)
     except ObjectDoesNotExist:
-        return render(request, 'tokenizar_veiculo.html', {'erro': 'Veículo não encontrado'})
+        return render(request, 'tokenizar_veiculo.html', {'erro': 'Ve\u00edculo n\u00e3o encontrado'})
     if request.method == 'POST':
         veiculo_id = request.POST.get('veiculo_id')
         valor = request.POST.get('valor')
-        # Gere o token JWT
         payload = {
             'veiculo_id': veiculo.id,
             'renavam': veiculo.renavam,
             'placa': veiculo.placa,
             'proprietario': veiculo.proprietario,
             'valor': valor,
-            'exp': int(datetime.datetime.now().timestamp()) + 3600
+            'exp': datetime.now() + timedelta(hours=1)
         }
         token = jwt.encode(payload, 'chave_secreta_aleatoria', algorithm='HS256')
         return render(request, 'tokenizar_veiculo.html', {'token': token, 'veiculo': veiculo})
@@ -56,9 +54,6 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 return redirect('index')
-            else:
-                # Add error message for failed authentication
-                return render(request, 'login.html', {'form': form, 'error': 'Nome de usuário ou senha inválidos'})
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
