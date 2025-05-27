@@ -82,7 +82,3 @@ def permissoes(request):
 def grupos(request):
     grupos = Grupo.objects.all()
     return render(request, 'grupos.html', {'grupos': grupos})
-
-def usuarios(request):
-    usuarios = Usuario.objects.all()
-    return render(request, 'usuarios.html', {'usuarios': usuarios})
