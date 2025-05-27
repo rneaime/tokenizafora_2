@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Veiculo, Notificacao, Permissao
+from .models import Veiculo, Notificacao, Permissao, Grupo
 from .forms import VeiculoForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -78,3 +78,7 @@ def notificacoes(request):
 def permissoes(request):
     permissoes = Permissao.objects.all()
     return render(request, 'permissoes.html', {'permissoes': permissoes})
+
+def grupos(request):
+    grupos = Grupo.objects.all()
+    return render(request, 'grupos.html', {'grupos': grupos})
