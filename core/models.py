@@ -31,3 +31,11 @@ class Grupo(models.Model):
 
     def __str__(self):
         return self.nome
+
+class Usuario(models.Model):
+    username = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    grupos = models.ManyToManyField(Grupo)
+
+    def __str__(self):
+        return self.username
